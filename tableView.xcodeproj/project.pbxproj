@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6985142B1BAEA8A900FA78EC /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 6985142A1BAEA8A900FA78EC /* City.m */; };
 		69A626431BABBBAF00218469 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A626421BABBBAF00218469 /* main.m */; };
 		69A626461BABBBAF00218469 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A626451BABBBAF00218469 /* AppDelegate.m */; };
 		69A626491BABBBAF00218469 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A626481BABBBAF00218469 /* ViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		698514291BAEA8A900FA78EC /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		6985142A1BAEA8A900FA78EC /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		69A6263D1BABBBAF00218469 /* tableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A626411BABBBAF00218469 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69A626421BABBBAF00218469 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				69A6264D1BABBBAF00218469 /* Images.xcassets */,
 				69A6264F1BABBBAF00218469 /* LaunchScreen.xib */,
 				69A626401BABBBAF00218469 /* Supporting Files */,
+				698514291BAEA8A900FA78EC /* City.h */,
+				6985142A1BAEA8A900FA78EC /* City.m */,
 			);
 			path = tableView;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 			files = (
 				69A626491BABBBAF00218469 /* ViewController.m in Sources */,
 				69A626461BABBBAF00218469 /* AppDelegate.m in Sources */,
+				6985142B1BAEA8A900FA78EC /* City.m in Sources */,
 				69A626431BABBBAF00218469 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +418,7 @@
 				69A626621BABBBAF00218469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69A626631BABBBAF00218469 /* Build configuration list for PBXNativeTarget "tableViewTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +427,7 @@
 				69A626651BABBBAF00218469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
