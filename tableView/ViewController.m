@@ -13,11 +13,13 @@
 {
     NSMutableArray * jsonData;
     NSMutableArray * dic;
+    NSArray * _pickerArray;
 }@end
 
 @implementation ViewController
-@synthesize response;
 
+
+@synthesize response;
 @synthesize json, citiesArray;
 
 
@@ -33,11 +35,49 @@
     
     
     
+    _pickerArray =@[@"Taipei",@"New_york"];
+
+    
+    self._pickerVew.dataSource =self;
+    self._pickerVew.delegate = self;
+    
     
     //self.greekLetters =@[@"Taipei",@"Taipei",@"Taipei",@"Taipei",@"Taipei",@"Taipei"] ;
 
 //[self retrieveData];
 
+}
+
+-(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSString * pickCityString = [_pickerArray objectAtIndex:row];
+    self.cityText.text = pickCityString;
+    
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+// The number of columns of data
+- (int)numberOfComponentsInPickerView:(UIPickerView *)_pickerView
+{
+    return 1;
+}
+
+// The number of rows of data
+- (int)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return _pickerArray.count;
+}
+
+// The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)_pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return _pickerArray[row];
 }
 
 
@@ -180,10 +220,7 @@
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 
 
@@ -218,6 +255,12 @@
     return cell;
     
 }
+
+
+
+//UIpicker setting
+
+
 
 
 

@@ -8,8 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate>
+    
+
+
+
+@property (weak,nonatomic) IBOutlet UIPickerView *_pickerVew;
+
+
+
+
+
+
+
+
 @property (weak, nonatomic) IBOutlet UIButton *sevenDaysBtn;
+
 
 @property  (copy, nonatomic) NSMutableArray *greekLetters;
 @property  (copy, nonatomic) NSArray *cityWeather;
@@ -22,7 +36,5 @@
 //@property (strong, nonatomic) NSMutableArray *json_array;
 
 -(IBAction)sevedaysweatherBtn:(id)sender;
-
-
 @end
 
