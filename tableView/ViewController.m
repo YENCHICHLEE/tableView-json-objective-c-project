@@ -29,15 +29,18 @@
     //self.response;
     
     [self jsonParse];
+    //[self tryJsonlistrow];
+    
+    
     
     
     //self.greekLetters =@[@"Taipei",@"Taipei",@"Taipei",@"Taipei",@"Taipei",@"Taipei"] ;
 
 //[self retrieveData];
 
-   // [self connAndLog];
-   // NSLog(array[1]);
 }
+
+
 - (void)jsonParse{
     
     //set URL
@@ -57,17 +60,15 @@
     NSArray* arrayName =[dic objectForKey:@"name"];
     NSArray* arrayid =[dic objectForKey:@"id"];
     NSDictionary* arrayCoord =[dic objectForKey:@"coord"];
-    //NSNumber* lon =[arrayCoord objectForKey:@"lon"];
-    //NSNumber* leg =[arrayCoord objectForKey:@"leg"];
+
     
     CGFloat lon = [[arrayCoord objectForKey: @"lon"] floatValue];
     CGFloat lat = [[arrayCoord objectForKey: @"lat"] floatValue];
     
     
-    //NSArray* outstring = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:leg]];
+
     NSLog(@"lon=%f＾%f＾",lon,lat);
-    //NSArray* stringLeg =[NSString stringWithFormat:@"leg=%f",leg];
-    //NSArray* stringLon =[NSString stringWithFormat:@"lon=%f",lon];
+
     
     
     NSArray* stringLat=[NSString stringWithFormat:@"%0.02f",lat];
@@ -105,34 +106,86 @@
 
 }
 
+-(void)tryJsonlistrow
+{
+    NSString* path2  =[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast/daily?q=%@&mode=json&units=metric&cnt=7",self.cityText.text];
+    
+   // NSString* path2  = @"http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=7";
+    
+    // url
+    NSURL* url2 = [NSURL URLWithString:path2];
+    NSURLRequest* request2 = [NSURLRequest requestWithURL:url2];
+    //存到緩沖區
+    NSData* jsonData2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:nil error:nil];
+    //解析json数据，使用系统方法 JSONObjectWithData:  options: error:
+    
+    NSDictionary* dic2 = [NSJSONSerialization JSONObjectWithData:jsonData2 options:NSJSONReadingAllowFragments error:nil];
+    //自定解析，
+    NSLog(@"%@", dic2);
+    NSArray* cod =[dic2 objectForKey:@"cod"];
+    NSLog(@"cod=%@",cod);
+    NSArray* listArray=[dic2 objectForKey:@"list"];
+    //day1
+    NSArray* day1 = [[listArray objectAtIndex:0] objectForKey:@"weather"];
+    NSArray* day1main = [[day1 objectAtIndex:0] objectForKey:@"main"];
+    NSArray* stringDayDescription1 =[NSString stringWithFormat:@"Day1 weather=%@",day1main];
+    NSLog(@"day1=%@",stringDayDescription1);
+    //day2
+    NSArray* day2 = [[listArray objectAtIndex:1] objectForKey:@"weather"];
+    NSArray* day2main = [[day1 objectAtIndex:0] objectForKey:@"main"];
+    NSArray* stringDayDescription2 =[NSString stringWithFormat:@"Day2 weather=%@",day2main];
+    NSLog(@"day2=%@",stringDayDescription2);
+    //day3
+    NSArray* day3 = [[listArray objectAtIndex:2] objectForKey:@"weather"];
+    NSArray* day3main = [[day3 objectAtIndex:0] objectForKey:@"main"];
+    NSArray* stringDayDescription3 =[NSString stringWithFormat:@"Day3 weather=%@",day3main];
+    NSLog(@"day3=%@",stringDayDescription3);
+    //day4
+    NSArray* day4 = [[listArray objectAtIndex:3] objectForKey:@"weather"];
+    NSArray* day4main = [[day4 objectAtIndex:0] objectForKey:@"main"];
+    NSArray* stringDayDescription4 =[NSString stringWithFormat:@"Day4 weather=%@",day4main];
+    NSLog(@"day4=%@",stringDayDescription4);
+    //day5
+    NSArray* day5 = [[listArray objectAtIndex:4] objectForKey:@"weather"];
+    NSArray* day5main = [[day1 objectAtIndex:0] objectForKey:@"main"];
+    NSArray* stringDayDescription5 =[NSString stringWithFormat:@"Day5 weather=%@",day5main];
+    NSLog(@"day5=%@",stringDayDescription5);
+        NSLog(@"day5=%@",stringDayDescription5);
+    //day6
+    NSArray* day6 = [[listArray objectAtIndex:5] objectForKey:@"weather"];
+    NSArray* day6main = [[day1 objectAtIndex:0] objectForKey:@"main"];
+    NSArray* stringDayDescription6 =[NSString stringWithFormat:@"Day2 weather=%@",day6main];
+    NSLog(@"day1=%@",stringDayDescription6);
+    //day7
+    NSArray* day7 = [[listArray objectAtIndex:6] objectForKey:@"weather"];
+    NSArray* day7main = [[day1 objectAtIndex:0] objectForKey:@"main"];
+    NSArray* stringDayDescription7 =[NSString stringWithFormat:@"Day7 weather=%@",day7main];
+    NSLog(@"day7=%@",stringDayDescription7);
+    
+    
+    self.greekLetters = [[NSMutableArray alloc]initWithObjects:@"7 days weather ",stringDayDescription1,stringDayDescription2,stringDayDescription3,stringDayDescription4,stringDayDescription5,stringDayDescription6,stringDayDescription7,nil];
+    
+    [self._tableView reloadData];
+
+}
+
+-(IBAction)sevedaysweatherBtn:(id)sender
+{
+    [self.sevenDaysBtn setTitle:self.cityText.text
+                       forState:UIControlStateNormal];
+    [self tryJsonlistrow];
+    
+
+
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/weather?q=London"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15.0];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    if (connection) {
-    //connect
-        
-        
-       // NSLog(response);
-    }else{
-        NSLog(@"ERROE");
-    //Error
-    }
-}
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-}
 
-*/
 
 -(void)connectDidFinishLoad:(NSURLConnection *)connection {
     
@@ -163,6 +216,7 @@
     
     
     return cell;
+    
 }
 
 
